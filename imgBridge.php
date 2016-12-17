@@ -5,7 +5,7 @@
  * Put the code into a file without anyother thing.
  * Put the fonts file near this file.
  *
- *
+ * By 44886.com
  */
 
   header("Content-Type:image/jpeg");
