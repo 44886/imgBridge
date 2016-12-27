@@ -8,7 +8,6 @@
 
 
 
-
 res.writeHead(200, {
     'Content-Type': 'image/*'
 });
