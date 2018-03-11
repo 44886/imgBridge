@@ -4,11 +4,13 @@
 图片跳板、图片中转
 
 
-#使用方法
+# 使用方法
 不管是什么语言，都这么访问
 http://域名/文件?url=图片地址（含http）
 
-#作者相关
+nodejs版，要引用superagent哦，自己用`npm install -s superagent`来安装哈
+
+# 作者相关
 风云酷小子
 http://blog.44886.com
 
