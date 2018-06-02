@@ -11,8 +11,3 @@ http://域名/文件?url=图片地址（含http）
 
 nodejs版，要引用superagent哦，自己用`npm install -s superagent`来安装哈
 
-# 作者相关
-风云酷小子
-http://blog.44886.com
-
-最小品 http://www.zuixiaopin.com
