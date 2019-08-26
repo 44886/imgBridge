@@ -14,7 +14,7 @@
 
 # 使用方法
 不管是什么语言，都这么访问
-http://域名/文件?url=图片地址（含http）
+http://域名/imgBridge2019.php?url=图片地址（含http）
 
 # 作者相关
 风云酷小子 http://www.44886.com
