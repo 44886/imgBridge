@@ -6,13 +6,14 @@
  * 1.增加对gif的支持
  * 2.对源图片的显示
  * 3.非常强悍，哪怕url有跳转，也能正常显示最终的图片
- * 4.去除对水印的支持（如果你需要水印，请最终输出为本地文件，再进行处理）
+ * 4.gif不支持水印，其他格式没问题
  * 5.支持https了
  * 6.对有错的、不存在的图片，进行友好的提示
  *   by 44886.com 2019-08-26
  */
 
  class ImgBridge{
+    private $water='';
     private $imgUrl=''; 
     private $referer='';
     private $ua='MQQBrowser/26 Mozilla/5.0 (Linux; U; Android 2.3.7; zh-cn; MB200 Build/GRJ22; CyanogenMod-7) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1';
@@ -59,8 +60,22 @@
         $this->out();        
     }
     private function out(){
-        header("Content-Type: image/".$this->imgType);
-        echo $this->imgBody;
+        /** gif 不处理，直接出图 */
+        if($this->imgType=='gif'){
+            header("Content-Type: image/gif");
+            echo $this->imgBody;
+            exit();
+        }
+        header("Content-Type: image/png");
+        /** 其他类型的，加水印 */
+        $im=imagecreatefromstring($this->imgBody);
+        $white = imagecolorallocate($im, 255, 255, 255);
+        /*加上水印*/
+        if($this->water){
+            imagettftext($im, 12, 0, 20, 20, $white, "/fonts/hwxh.ttf", $this->water);            
+        }
+        imagepng($im);
+        
     }
     private function error($err){
         header("Content-Type: image/jpeg");
@@ -95,5 +110,5 @@
 
  }
 
- $img=new ImgBridge();
+ $img=new ImgBridge(array('water'=>''));
  $img->getImg(strstr($_SERVER["QUERY_STRING"], "http"));
